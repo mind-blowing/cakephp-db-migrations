@@ -57,10 +57,3 @@ MySQL code:
 This package also includes an extremely easy to use Fixtures shell that works seamlessly with
 Migrations. Fixtures also use YAML and are a great way to insert test and/or development data
 into your database.
-
-
-
-Please check out the examples directory within this package.
-
-Updates, new releases and other resources can be found at [http://codaset.com/joelmoss/cakephp-db-migrations/](http://codaset.com/joelmoss/cakephp-db-migrations/)
-For further assistance and additional resources, please check out my Blog at [http://developingwithstyle.com](http://developingwithstyle.com)
