@@ -16,7 +16,7 @@
  */
 
 App::import('Core', array('file', 'folder', 'model', 'connection_manager'));
-App::import('Vendor', 'Migrations.Yaml');
+App::import('Vendor', 'Migrations.Yaml', array('file' => 'Yaml.php'));
 
 class PopulateShell extends Shell
 {
