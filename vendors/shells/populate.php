@@ -148,7 +148,8 @@ class PopulateShell extends Shell
                 $this->data[$name] = $data;
             }
         }
-        
+
+        $useTranslateBehavior = false;
         foreach ($this->data as $name => $records) {
             foreach ($records as $i => $record) {
                 foreach ($record as $key => $val) {
@@ -165,6 +166,10 @@ class PopulateShell extends Shell
                 		    exit;
                         }
                     }
+
+                    if($key == 'locale') {
+                        $useTranslateBehavior = true;
+                    }
                 }
             }
         }
@@ -172,8 +177,20 @@ class PopulateShell extends Shell
         foreach ($this->data as $name => $records) {
             $this->$name->deleteAll(array('1=1'), false);
             $this->out("Populating model '" . $name . "' ...", false);
-            $res = $this->$name->saveAll($records, array('validate' => false));
-            $this->out($this->_colorize(count($records) . ' rows inserted.', 'COMMENT'));
+
+            if($useTranslateBehavior) {
+                $count = 0;
+                foreach($records as $record) {
+                    $this->$name->locale = $record['locale'];
+                    $this->$name->create($record);
+                    $this->$name->save();
+                    $count++;
+                }
+                $this->out($this->_colorize(count($count) . ' rows inserted.', 'COMMENT'));
+            } else {
+                $res = $this->$name->saveAll($records, array('validate' => false));
+                $this->out($this->_colorize(count($records) . ' rows inserted.', 'COMMENT'));
+            }
         }
         
 		$this->out();
