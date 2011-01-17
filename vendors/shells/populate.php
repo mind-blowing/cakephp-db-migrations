@@ -186,7 +186,7 @@ class PopulateShell extends Shell
                     $this->$name->save();
                     $count++;
                 }
-                $this->out($this->_colorize(count($count) . ' rows inserted.', 'COMMENT'));
+                $this->out($this->_colorize($count . ' rows inserted.', 'COMMENT'));
             } else {
                 $res = $this->$name->saveAll($records, array('validate' => false));
                 $this->out($this->_colorize(count($records) . ' rows inserted.', 'COMMENT'));
