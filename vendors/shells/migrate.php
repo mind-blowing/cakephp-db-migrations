@@ -563,7 +563,6 @@ class MigrateShell extends Shell
         $this->out('');
         $this->hr();
         
-        $this->_mate($filename);
         exit;
     }
     
@@ -1380,20 +1379,6 @@ class MigrateShell extends Shell
         $buf = ob_get_contents();
         ob_end_clean();
         return $buf;
-    }
-    
-    /**
-     * Gives the user an option to open a specified file in Textmate
-     *
-     * @param string $file a file that will be opened with Textmate
-     */
-    function _mate($file)
-    {
-        $this->out('');
-        if (strtoupper($this->in("  Do you want to edit this file now with Textmate?", array('Y', 'N'), 'Y')) == 'Y') {
-            system('mate '. $file);
-        }
-        $this->out('');
     }
     
     function _hasMigrations()
